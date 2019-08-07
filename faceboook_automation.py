@@ -6,7 +6,7 @@ Created on Thu Jul 25 11:00:17 2019
 """
 
 faceBookEmail = "your_facebook_email@example.com"
-faceBookPassword = "xxxxxxxxx"
+faceBookPassword = "xxxxxxxxxxxxxx"
 Auto_Reply_Message = "Auto Reply Message"
 URL_List = list()
 
@@ -34,19 +34,19 @@ def messageSender(URL):
     
     # following handles the element location presence exception
     try:
-        wait.until(ec.visibility_of_element_located((By.XPATH,"//div[@aria-label='Messages']/div[@id='js_2']/div[last()]")))
-        messages = browser.find_element_by_xpath("//div[@aria-label='Messages']/div[@id='js_2']/div[last()]")
+        wait.until(ec.element_to_be_clickable((By.XPATH,"//div[@aria-label='Messages']/div[@id='js_1']/div[last()]")))
+        messages = browser.find_element_by_xpath("//div[@aria-label='Messages']/div[@id='js_1']/div[last()]")
         inboxTitle = browser.find_element_by_xpath("//div[@class='_673w']/div/div/h2/span")
     except:
-        wait.until(ec.visibility_of_element_located((By.XPATH,"//div[@aria-label='Messages']/div[@id='js_2']/div[last()]")))
-        messages = browser.find_element_by_xpath("//div[@class='_4_j4']/div/div/div[@class='uiScrollableAreaWrap scrollable']/div/div/div/div[@id='js_2']/div[last()]")
+        wait.until(ec.element_to_be_clickable((By.XPATH,"//div[@class='_4_j4']/div/div/div[@class='uiScrollableAreaWrap scrollable']/div/div/div/div[@id='js_1']/div[last()]")))
+        messages = browser.find_element_by_xpath("//div[@class='_4_j4']/div/div/div[@class='uiScrollableAreaWrap scrollable']/div/div/div/div[@id='js_1']/div[last()]")
         wait.until(ec.element_to_be_clickable((By.XPATH,"//div[@class='_673w _1_fz']/div/div/h2/span")))
         inboxTitle = browser.find_element_by_xpath("//div[@class='_673w _1_fz']/div/div/h2/span")
         
     # following handles message text area presence expception
     try:
-        if '' in inboxTitle.text: # condition to check something special in username string
-            if "" in messages.text: # condtion to check something in the last inbox message from a specific user 
+        if '¡BBB! Dptos NUEVOS de 1, 2 y 3 dormitorios en arriendo.' in inboxTitle.text: # condition to check something special in username string
+            if ( ("available" in messages.text) or ("disponible" in messages.text) ) and ("bretagne" not in messages.text): # condtion to check something in the last inbox message from a specific user 
                 element = browser.find_element_by_xpath("//div[@aria-autocomplete='list']")
                 element.send_keys(Auto_Reply_Message)
                 element.send_keys(Keys.RETURN)
