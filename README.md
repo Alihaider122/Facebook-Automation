@@ -8,4 +8,3 @@ faceBookEmail = "your_facebook_email@example.com"
 faceBookPassword = "xxxxxxxxx"
 
 Auto_Reply_Message = "Auto Reply Message"
-
